@@ -23,14 +23,14 @@ const Home = () => {
         <button
             onClick={openGame}
             type="submit"
-            className="btn btn-info btn-block btn-lg gradient-custom-4 text-body text-white"
+            className="btn btn-info btn-block btn-lg text-black"
           >
             Start Game
           </button>
           <button
             onClick={handleLogout}
             type="submit"
-            className="btn btn-success btn-block btn-sm gradient-custom-4 text-white"
+            className="btn btn-success btn-block btn-sm text-white"
           >
             Logout
           </button>
