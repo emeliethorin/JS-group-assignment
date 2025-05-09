@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "./PageTitle";
 const Home = () => {
   const navigate = useNavigate();
   const userName = JSON.parse(localStorage.getItem("user"));
@@ -11,6 +12,8 @@ const Home = () => {
     navigate("/game");
   }
   return (
+    <>
+    <PageTitle />
     <div className="mask d-flex align-items-center h-100 ">
       <div className="card opacity-75" style={{ borderRadius: "15px" }}>
         <div className="card-body p-5">
@@ -37,6 +40,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

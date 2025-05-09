@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import { Button, Card, Alert, Form, FloatingLabel } from "react-bootstrap";
+import "../styles/login.css";
+import PageTitle from "./PageTitle";
 
 function Register() {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ function Register() {
     }, 3000);
   };
 
-  const handleInputChange = (e)=>{
+  const handleInputChange = (e) => {
     setShowSuccess(false);
     e.preventDefault();
     setInput({
@@ -32,58 +34,68 @@ function Register() {
 
   return (
     <>
-      <div className="mask d-flex align-items-center h-100 ">
-        <div className="container h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="">
-              <div className="card" style={{ borderRadius: "15px" }}>
-                <div className="card-body p-5">
-                  <h2 className="text-uppercase text-center mb-5">
-                    Create an account
-                  </h2>
-                  <form onSubmit={handleSubmit}>
-                    <div className="form-outline mb-4">
-                      <input
-                        name="name"
-                        value={input.name}
-                        onChange={handleInputChange}
-                        type="text"
-                        className="form-control form-control-lg"
-                        id="id_name"
-                        placeholder="Name"
-                      />
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        name="email"
-                        value={input.email}
-                        onChange={handleInputChange}
-                        type="email"
-                        className="form-control form-control-lg"
-                        id="id_email"
-                        placeholder="name@example.com"
-                      />
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        name="password"
-                        value={input.password}
-                        onChange={handleInputChange}
-                        type="password"
-                        className="form-control form-control-lg"
-                        id="id_password"
-                        placeholder="password"
-                      />
-                    </div>
-                    <div className="d-flex justify-content-center">
-                      <button
-                        type="submit"
-                        className="btn btn-success btn-block btn-lg gradient-custom-4 text-white"
-                      >
-                        Register
-                      </button>
-                    </div>
-                    {showSuccess && (
+    <PageTitle />
+      <div className="container">
+        <Card className="text-left shadow p-3 mb-5 rounded">
+          <Card.Title>
+            <h2 className="text-uppercase text-center m-3">
+              Create account
+            </h2>
+          </Card.Title>
+          <Card.Body>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <FloatingLabel
+                  controlId={input.name}
+                  label="Enter a Name"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    type="text"
+                    placeholder="Name"
+                    value={input.name}
+                    name="name"
+                    onChange={handleInputChange}
+                  />
+                </FloatingLabel>
+              </Form.Group>
+              <Form.Group>
+                <FloatingLabel
+                  controlId="floatingInputEmail"
+                  label="Enter email"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={input.email}
+                    name="email"
+                    onChange={handleInputChange}
+                  />
+                </FloatingLabel>
+              </Form.Group>
+              <Form.Group>
+                <FloatingLabel
+                  controlId="floatingInputPassword"
+                  label="Enter Password"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={input.password}
+                    name="password"
+                    onChange={handleInputChange}
+                  />
+                </FloatingLabel>
+              </Form.Group>
+              <Form.Group>
+                <Button type="submit" onClick={handleSubmit}>
+                  Register
+                </Button>
+              </Form.Group>
+              <Form.Group>
+                {showSuccess && (
                       <Alert
                         className="mt-2"
                         variant="success"
@@ -93,18 +105,18 @@ function Register() {
                         Registered Successfully.
                       </Alert>
                     )}
-                    <p className="text-center text-muted mt-5 mb-0">
-                      Have already an account?
-                      <a href="/login" className="fw-bold text-body">
-                        <u> Login here </u>
-                      </a>
-                    </p>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              </Form.Group>
+              <Form.Group>
+                <p className="text-center text-muted mt-5 mb-0">
+                  Have already an account?
+                  <a href="/login" className="fw-bold text-body">
+                    <u> Login here </u>
+                  </a>
+                </p>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+        </Card>
       </div>
     </>
   );

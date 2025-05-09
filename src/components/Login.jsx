@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import { Button, Card, Alert, Form, FloatingLabel } from "react-bootstrap";
+import PageTitle from "./PageTitle";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,76 +37,80 @@ const Login = () => {
   };
   return (
     <>
-      <div className="mask d-flex align-items-center h-100 ">
-        <div className="container h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="">
-              <div className="card" style={{ borderRadius: "15px" }}>
-                <div className="card-body p-5">
-                  <h2 className="text-uppercase text-center mb-5">Login</h2>
-                  <form onSubmit={handleLogin}>
-                    <div className="form-outline mb-4">
-                      <input
-                        name="email"
-                        value={input.email}
-                        onChange={handleInputChange}
-                        type="email"
-                        className="form-control form-control-lg"
-                        id="id_email"
-                        placeholder="Your Email"
-                      />
-                    </div>
-                    <div className="form-outline mb-4">
-                      <input
-                        name="password"
-                        value={input.password}
-                        onChange={handleInputChange}
-                        type="password"
-                        className="form-control form-control-lg"
-                        id="id_password"
-                        placeholder="password"
-                      />
-                    </div>
-                    <div className="d-flex justify-content-center">
-                      <button
-                        type="submit"
-                        className="btn btn-success btn-block btn-lg text-white"
-                      >
-                        Login
-                      </button>
-                    </div>
-                    {showAlert && (
-                      <Alert
-                        className="mt-2"
-                        variant="danger"
-                        onClose={() => setShowAlert(false)}
-                        dismissible
-                      >
-                        Login Failed. Wrong email or password.
-                      </Alert>
-                    )}
-                    {showSuccess && (
-                      <Alert
-                        className="mt-2"
-                        variant="success"
-                        onClose={() => setShowSuccess(false)}
-                        dismissible
-                      >
-                        Login success! You will be redirected to Game.
-                      </Alert>
-                    )}
-                    <p className="text-center text-muted mt-5 mb-0">
-                      Don't have an account?
-                      <a href="/register" className="fw-bold text-body">
-                        <u> Register here </u>
-                      </a>
-                    </p>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <PageTitle />
+      <div className="container">
+        <Card className="text-left shadow p-3 mb-5 rounded">
+          <Card.Title>
+            <h2 className="text-uppercase text-center m-3">Login</h2>
+          </Card.Title>
+          <Card.Body>
+            <Form onSubmit={handleLogin}>
+              <Form.Group>
+                <FloatingLabel
+                  controlId="floatingInputEmail"
+                  label="Enter email"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    type="email"
+                    placeholder="Email"
+                    value={input.email}
+                    name="email"
+                    onChange={handleInputChange}
+                  />
+                </FloatingLabel>
+              </Form.Group>
+              <Form.Group>
+                <FloatingLabel
+                  controlId="floatingInputPassword"
+                  label="Enter Password"
+                  className="mb-3"
+                >
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={input.password}
+                    name="password"
+                    onChange={handleInputChange}
+                  />
+                </FloatingLabel>
+              </Form.Group>
+              <Form.Group>
+                <Button type="submit">Login</Button>
+              </Form.Group>
+              <Form.Group>
+                {showAlert && (
+                  <Alert
+                    className="mt-2 fs-6"
+                    variant="danger"
+                    onClose={() => setShowAlert(false)}
+                    dismissible
+                  >
+                    Login Failed. Wrong email or password.
+                  </Alert>
+                )}
+                {showSuccess && (
+                  <Alert
+                    className="mt-2 fs-6"
+                    variant="success"
+                    onClose={() => setShowSuccess(false)}
+                    dismissible
+                  >
+                    Login success! You will be redirected to Game.
+                  </Alert>
+                )}
+              </Form.Group>
+              <Form.Group>
+                <p className="text-center text-muted mt-5 mb-0">
+                  Don't have an account?
+                  <a href="/register" className="fw-bold text-body">
+                    <u> Register here </u>
+                  </a>
+                </p>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+        </Card>
       </div>
     </>
   );

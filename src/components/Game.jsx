@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import PageTitle from "./PageTitle";
 
 const Game = () => {
   const navigate = useNavigate();
@@ -9,6 +10,8 @@ const Game = () => {
     navigate("/login");
   };
   return (
+    <>
+    <PageTitle />
     <div className="mask d-flex align-items-center h-100 ">
       <div className="card opacity-75" style={{ borderRadius: "15px" }}>
         <div className="card-body p-5">
@@ -27,6 +30,7 @@ const Game = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
