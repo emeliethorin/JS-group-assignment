@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Form, Button, Alert } from "react-bootstrap";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
-
+  const handleInputChange = (e) => {
+    setShowAlert(false);
+    e.preventDefault();
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  };
   const handleLogin = (e) => {
     e.preventDefault();
     const loggeduser = JSON.parse(localStorage.getItem("user"));
@@ -16,9 +26,12 @@ const Login = () => {
       input.password === loggeduser.password
     ) {
       localStorage.setItem("loggedin", true);
-      navigate("/");
+      setShowSuccess(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } else {
-      alert("Wrong Email or Password");
+      setShowAlert(true);
     }
   };
   return (
@@ -35,39 +48,23 @@ const Login = () => {
                       <input
                         name="email"
                         value={input.email}
-                        onChange={(e) =>
-                          setInput({
-                            ...input,
-                            [e.target.name]: e.target.value,
-                          })
-                        }
+                        onChange={handleInputChange}
                         type="email"
                         className="form-control form-control-lg"
                         id="id_email"
                         placeholder="Your Email"
                       />
-                      {/* <label htmlFor="id_email" className="form-label">
-                          Your Email
-                        </label> */}
                     </div>
                     <div className="form-outline mb-4">
                       <input
                         name="password"
                         value={input.password}
-                        onChange={(e) =>
-                          setInput({
-                            ...input,
-                            [e.target.name]: e.target.value,
-                          })
-                        }
+                        onChange={handleInputChange}
                         type="password"
                         className="form-control form-control-lg"
                         id="id_password"
                         placeholder="password"
                       />
-                      {/* <label htmlFor="id_password" className="form-label">
-                          Password
-                        </label> */}
                     </div>
                     <div className="d-flex justify-content-center">
                       <button
@@ -77,10 +74,30 @@ const Login = () => {
                         Login
                       </button>
                     </div>
+                    {showAlert && (
+                      <Alert
+                        className="mt-2"
+                        variant="danger"
+                        onClose={() => setShowAlert(false)}
+                        dismissible
+                      >
+                        Login Failed. Wrong email or password.
+                      </Alert>
+                    )}
+                    {showSuccess && (
+                      <Alert
+                        className="mt-2"
+                        variant="success"
+                        onClose={() => setShowSuccess(false)}
+                        dismissible
+                      >
+                        Login success! You will be redirected to Game.
+                      </Alert>
+                    )}
                     <p className="text-center text-muted mt-5 mb-0">
-                      Don't have an account?  
+                      Don't have an account?
                       <a href="/register" className="fw-bold text-body">
-                        <u>Register here</u>
+                        <u> Register here </u>
                       </a>
                     </p>
                   </form>
