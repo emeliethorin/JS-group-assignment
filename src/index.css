@@ -1,3 +1,6 @@
+
+
+
 body {
   margin: 0 auto !important;
   display: flex;
@@ -11,4 +14,4 @@ body {
   background-repeat: no-repeat; /* Prevents tiling */
   font-family: "Rammetto One", sans-serif !important;
   font-optical-sizing: auto;
-}
+} main
