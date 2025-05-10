@@ -1,0 +1,7 @@
+input, label, p, button, .alert{
+    font-size:13px !important;
+}
+.transparent-card {
+  background-color: rgba(255, 255, 255, 0); /* Fully transparent */
+  border: none; /* Optional: Remove border */
+}
