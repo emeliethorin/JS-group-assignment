@@ -2,8 +2,9 @@
     font-family: "Rammetto One", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 3rem;
-    color: #ffffff;
+    font-size: 4rem;
+    color: #ffffff !important;
+    text-shadow: 0 0 10px #8a1b08, 0 0 20px #520c07;
 }
 
 .mb-3 {

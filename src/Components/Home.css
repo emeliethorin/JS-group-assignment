@@ -22,3 +22,26 @@
 .btn {
     margin: 10px;
 }
+
+.btn-start {
+    background-color: #1f8b25;
+    color: white;
+    transition: #14b41c 0.3s ease;
+}
+
+.btn-start:hover {
+    background-color: #14b41c;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-logout {
+    background-color: #991403;
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #be220d;
+    cursor: pointer;
+    color: white;
+}
