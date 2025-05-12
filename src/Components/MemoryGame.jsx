@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './MemoryGame.css'; // Emelie will define it
+import './MemoryGame.css'; 
 import ResetButton from './ResetButton';
 import Card from './Card';
 
@@ -21,6 +21,17 @@ const MemoryGame = () => {
   const [cards, setCards] = useState(generateShuffledCards());
   const [flippedIndices, setFlippedIndices] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
+  const [moves, setMoves] = useState(0);
+  const [time, setTime] = useState(0);
+  const [timerActive, setTimerActive] = useState(false);
+
+  useEffect(() => {
+    let timer;
+    if (timerActive) {
+      timer = setInterval(() => setTime((t) => t + 1), 1000);
+    }
+    return () => clearInterval(timer);
+  }, [timerActive]);
 
   const resetGame = () => {
     setCards(generateShuffledCards());
@@ -31,6 +42,7 @@ const MemoryGame = () => {
 
   useEffect(() => {
     if (flippedIndices.length === 2) {
+      setMoves ((m) => m + 1);
       const [firstIndex, secondIndex] = flippedIndices;
       const firstCard = cards[firstIndex];
       const secondCard = cards[secondIndex];
@@ -51,7 +63,7 @@ const MemoryGame = () => {
               card.isMatched ? card : { ...card, isFlipped: false }
             )
           );
-        }, 1000);
+        }, 1500);
       }
       // Clear flipped cards
       setFlippedIndices([]);
