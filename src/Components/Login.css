@@ -1,4 +1,4 @@
-h1 {
+.pagetitle {
     font-family: "Rammetto One", sans-serif;
     font-weight: 400;
     font-style: normal;
@@ -9,4 +9,9 @@ h1 {
 .mb-3 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px;
+}
+
+.login-btn {
+    color: #ffffff;
+    background-color: #f18c20;
 }

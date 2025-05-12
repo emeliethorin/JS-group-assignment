@@ -77,7 +77,7 @@ const Login = () => {
                 </FloatingLabel>
               </Form.Group>
               <Form.Group>
-                <Button type="submit">Login</Button>
+                <Button type="submit" className="login-btn">Login</Button>
               </Form.Group>
               <Form.Group>
                 {showAlert && (
