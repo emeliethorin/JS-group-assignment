@@ -87,7 +87,14 @@ const MemoryGame = () => {
   return (
     <div className="memory-game">
       <div className="header">
-        <h1>Memory Game</h1>
+        <h1>🐾 Memory game</h1>
+          <div className="stats">
+            <span>Player: {userName}</span>
+            <span>Moves: {moves}</span>
+            <span>
+              Time: {Math.floor(time / 60)}:{String(time % 60).padStart(2, '0')}
+            </span>
+          </div>
       </div>
       <div className="grid">
         {cards.map((card, index) => (
