@@ -17,14 +17,14 @@ const Home = () => {
     <>
     <PageTitle />
     <div className="welcome-container">
-      <div className="card opacity-10" style={{ borderRadius: "15px" }}>
-        <div className="card-body p-5">
-          <h2 className="text-center mb-5">
+      <div className="card" style={{ borderRadius: "15px" }}>
+        <div className="card-body">
+          <h2 className="welcome-text text-center">
             Welcome <span className="welcome-text">{userName.name}</span>{" "}
-            to Memory Game
+    
           </h2>
         </div>
-        <div className="d-flex justify-content-evenly">
+        <div className="d-flex justify-content-center">
         <button
             onClick={openGame}
             type="submit"

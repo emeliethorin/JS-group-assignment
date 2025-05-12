@@ -1,3 +1,24 @@
+
+.welcome-container {
+    width: 70%;
+    display: inline-block;
+    padding: 10px;
+}
+
+.card {
+    padding: 20px;
+}
+
+.card-body {
+    padding: 10px;
+}
+
 .welcome-text {
     font-size: 32px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.btn {
+    margin: 10px;
 }
