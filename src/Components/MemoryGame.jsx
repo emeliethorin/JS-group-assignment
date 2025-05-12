@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './MemoryGame.css'; 
 import ResetButton from './ResetButton';
 import Card from './Card';
-import { supabase } from './supabaseClient';
+//import { supabase } from './supabaseClient';
+import GameStats from './Gamestats';
 
 //emojis
 const generateShuffledCards = () => {
@@ -26,6 +27,8 @@ const MemoryGame = () => {
   const [moves, setMoves] = useState(0);
   const [time, setTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
+  const [playerScore, setPlayerScore] = useState(null);
+  const [leaderboard, setLeaderboard] = useState([]);
 
   useEffect(() => {
     let timer;
@@ -57,6 +60,8 @@ const MemoryGame = () => {
             card.value === firstCard.value ? { ...card, isMatched: true } : card
           )
         );
+        // Clear immediately if matched
+    setFlippedIndices([]);
       } else {
         // Cards don't match, flip them back after delay
         setTimeout(() => {
@@ -110,6 +115,9 @@ const MemoryGame = () => {
           console.error('Error inserting score:', insertError);
           return;
         }
+
+        // Set player score
+        setPlayerScore({ name: userName || 'Player 1', moves, time });
   
         // Fetch leaderbord, ranked by time
         const { data, error: fetchError } = await supabase
@@ -125,8 +133,6 @@ const MemoryGame = () => {
 
         setLeaderboard(data);
       };
-  
-      postScoreAndFetchLeaderboard();
     }
   }, [cards]);
   
@@ -135,10 +141,10 @@ const MemoryGame = () => {
     <div className="memory-game">
       <div className="header">
         <h1>🐾 Memory game</h1>
-          <div className="stats">
-            <span>Player: {userName}</span>
-            <span>Moves: {moves}</span>
-            <span>
+          <div className="game-stats">
+            <span className="stats">Player: {userName}</span>
+            <span className="stats">Moves: {moves}</span>
+            <span className="stats">
               Time: {Math.floor(time / 60)}:{String(time % 60).padStart(2, '0')}
             </span>
           </div>
