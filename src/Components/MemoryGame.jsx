@@ -92,29 +92,43 @@ const MemoryGame = () => {
     if (allMatched) {
       setTimerActive(false);
   
-      const postScore = async () => {
-        const { error } = await supabase
-          .from('Leaderboard')
+      const postScoreAndFetchLeaderboard = async () => {
+        // Insert the score into Supabase
+        const { error: insertError } = await supabase
+          .from('scores')
           .insert([
             {
-              name: userName,
+              name: userName || 'Player 1', 
               moves,
               time
             }
           ]);
   
-        if (error) {
-          console.error('Error posting score:', error);
-        } else {
-          console.log('Score successfully posted to Supabase!');
+        if (insertError) {
+          console.error('Error inserting score:', insertError);
+          return;
         }
+  
+        // Fetch leaderbord, ranked by time
+        const { data, error: fetchError } = await supabase
+          .from('scores')
+          .select('*')
+          .order('time', { ascending: true })
+          .limit(5);
+  
+        if (fetchError) {
+          console.error('Error fetching leaderboard:', fetchError);
+          return;
+        }
+  
+        // Set leaderboard state
+        setLeaderboard(data);
       };
   
-      postScore();
+      postScoreAndFetchLeaderboard();
     }
   }, [cards]);
   
-
 
   return (
     <div className="memory-game">
