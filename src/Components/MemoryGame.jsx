@@ -86,6 +86,7 @@ const MemoryGame = () => {
     setFlippedIndices(prev => [...prev, index]);
   };
 
+  // Win - all cards matched
   useEffect(() => {
     const allMatched = cards.every((card) => card.isMatched);
     if (allMatched) {
@@ -93,7 +94,7 @@ const MemoryGame = () => {
   
       const postScore = async () => {
         const { error } = await supabase
-          .from('Leaderboard') // replace with your actual table name
+          .from('Leaderboard')
           .insert([
             {
               name: userName,
@@ -146,6 +147,20 @@ const MemoryGame = () => {
             <button className="play-again-btn" onClick={resetGame}>
               🔁 Play Again
             </button>
+
+            {/* Leaderboard section */}
+            {leaderboard.length > 0 && (
+              <div className="leaderboard-container">
+                <h3>🏅 Leaderboard (Top 5 by Time)</h3>
+                <ul className="leaderboard">
+                  {leaderboard.map((entry, index) => (
+                    <li key={entry.id}>
+                      {index + 1}. {entry.name} — {entry.moves} moves, {entry.time}s
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
           </div>
         </div>
       )}
