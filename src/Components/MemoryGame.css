@@ -119,6 +119,37 @@
   background-color: #218838;
 }
 
+.your-score {
+  margin-top: 20px;
+  padding: 10px;
+  background: #d6f5d6;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.leaderboard-container {
+  margin-top: 20px;
+  text-align: left;
+  background: #ffffff10;
+  padding: 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+}
+
+.leaderboard {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leaderboard li {
+  margin: 6px 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+
 @keyframes pop {
   0% {
     transform: scale(0.9);

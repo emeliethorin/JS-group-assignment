@@ -102,7 +102,9 @@ const MemoryGame = () => {
               moves,
               time
             }
-          ]);
+          ])
+          .select()
+          .single();
   
         if (insertError) {
           console.error('Error inserting score:', insertError);
@@ -120,8 +122,7 @@ const MemoryGame = () => {
           console.error('Error fetching leaderboard:', fetchError);
           return;
         }
-  
-        // Set leaderboard state
+
         setLeaderboard(data);
       };
   
@@ -162,6 +163,15 @@ const MemoryGame = () => {
               🔁 Play Again
             </button>
 
+            {/* "Your Score" */}
+            {playerScore && (
+              <div className="your-score">
+                <h3>🧍 Your Score</h3>
+                <p>
+                  {playerScore.name} — {playerScore.moves} moves, {playerScore.time}s
+                </p>
+              </div>
+            )}
             {/* Leaderboard section */}
             {leaderboard.length > 0 && (
               <div className="leaderboard-container">
