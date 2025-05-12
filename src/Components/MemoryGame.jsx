@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './MemoryGame.css'; 
 import ResetButton from './ResetButton';
 import Card from './Card';
+import { supabase } from './supabaseClient';
 
 //emojis
 const generateShuffledCards = () => {
@@ -21,6 +22,7 @@ const MemoryGame = () => {
   const [cards, setCards] = useState(generateShuffledCards());
   const [flippedIndices, setFlippedIndices] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
+  const [userName, setUserName] = useState('Player 1');
   const [moves, setMoves] = useState(0);
   const [time, setTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
@@ -83,6 +85,35 @@ const MemoryGame = () => {
     );
     setFlippedIndices(prev => [...prev, index]);
   };
+
+  useEffect(() => {
+    const allMatched = cards.every((card) => card.isMatched);
+    if (allMatched) {
+      setTimerActive(false);
+  
+      const postScore = async () => {
+        const { error } = await supabase
+          .from('Leaderboard') // replace with your actual table name
+          .insert([
+            {
+              name: userName,
+              moves,
+              time
+            }
+          ]);
+  
+        if (error) {
+          console.error('Error posting score:', error);
+        } else {
+          console.log('Score successfully posted to Supabase!');
+        }
+      };
+  
+      postScore();
+    }
+  }, [cards]);
+  
+
 
   return (
     <div className="memory-game">
