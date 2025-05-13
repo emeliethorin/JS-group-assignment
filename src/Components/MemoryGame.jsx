@@ -111,33 +111,36 @@ const MemoryGame = () => {
     const allMatched = cards.every((card) => card.isMatched);
     if (allMatched) {
       setTimerActive(false);
+      postScoreAndFetchLeaderboard();
   
-      const postScoreAndFetchLeaderboard = async () => {
-        // Insert the score into Supabase
-        try {
-        const { error: insertError } = await supabase
-          .from('scores')
-          .insert([
-            {
-              name: userName || 'Player 1', 
-              moves,
-              time
-            }
-          ])
-          .select()
-          .single();
-  
-        if (insertError) {
-          console.error('Error inserting score:', insertError);
-          return;
-        }
+  // Insert the score into Supabase
+  const postScoreAndFetchLeaderboard = async () => {
+    console.log("Posting score to Supabase");
 
-        // Set player score
-        setPlayerScore({ name: userName || 'Player 1', moves, time });
+    try {
+    const { error: insertError } = await supabase
+      .from('scores')
+      .insert([
+      {
+        name: userName || 'Player 1', 
+        moves,
+        time
+      }
+      ])
+      .select()
+      .single();
   
-        // Fetch leaderbord, ranked by time
-        const { data, error: fetchError } = await supabase
-          .from('scores')
+      if (insertError) {
+        console.error('Error inserting score:', insertError);
+        return;
+      }
+
+  // Set player score
+  setPlayerScore({ name: userName || 'Player 1', moves, time });
+  
+  // Fetch leaderbord, ranked by time
+  const { data, error: fetchError } = await supabase
+    .from('scores')
           .select('*')
           .order('time', { ascending: true })
           .limit(5);
@@ -215,8 +218,8 @@ const MemoryGame = () => {
           </div>
         </div>
       )}
-
       <ResetButton onReset={resetGame} />
+      
     </div>
   );
 };
