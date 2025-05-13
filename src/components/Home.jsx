@@ -16,9 +16,8 @@ const Home = () => {
   return (
     <>
     <PageTitle />
-    <div className="welcome-container">
-      <div className="card" style={{ borderRadius: "15px" }}>
-        <div className="card-body">
+      <div className="welcome-container" style={{ borderRadius: "15px" }}>
+        <div className="welcome-container">
           <h2 className="welcome-text text-center">
             Welcome <span className="welcome-text">{userName.name}</span>{" "}
     
@@ -41,7 +40,6 @@ const Home = () => {
           </button>
         </div>
       </div>
-    </div>
     </>
   );
 };
