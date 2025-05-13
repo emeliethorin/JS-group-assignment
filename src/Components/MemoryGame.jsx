@@ -4,6 +4,7 @@ import ResetButton from './ResetButton';
 import Card from './Card';
 //import { supabase } from './supabaseClient';
 import GameStats from './Gamestats';
+import LogoutButton from './LogoutButton';
 
 //emojis
 const generateShuffledCards = () => {
@@ -69,8 +70,7 @@ const MemoryGame = () => {
             card.value === firstCard.value ? { ...card, isMatched: true } : card
           )
         );
-        // Clear immediately if matched
-    setFlippedIndices([]);
+        
       } else {
         // Cards don't match, flip them back after delay
         setTimeout(() => {
@@ -105,13 +105,6 @@ const MemoryGame = () => {
     );
     setFlippedIndices(prev => [...prev, index]);
   };
-
-  // Win - all cards matched
-  useEffect(() => {
-    const allMatched = cards.every((card) => card.isMatched);
-    if (allMatched) {
-      setTimerActive(false);
-      postScoreAndFetchLeaderboard();
   
   // Insert the score into Supabase
   const postScoreAndFetchLeaderboard = async () => {
@@ -134,30 +127,35 @@ const MemoryGame = () => {
         console.error('Error inserting score:', insertError);
         return;
       }
+      
 
-  // Set player score
-  setPlayerScore({ name: userName || 'Player 1', moves, time });
-  
-  // Fetch leaderbord, ranked by time
-  const { data, error: fetchError } = await supabase
+    // Set player score
+    setPlayerScore({ name: userName || 'Player 1', moves, time });
+    
+    // Fetch leaderbord, ranked by time
+    const { data, error: fetchError } = await supabase
     .from('scores')
-          .select('*')
-          .order('time', { ascending: true })
-          .limit(5);
-  
-        if (fetchError) {
-          console.error('Error fetching leaderboard:', fetchError);
-          return;
-        }
-        
-        setLeaderboard(data);
-      } catch (err) {
-        console.error('Unexpected error:', err);
-      }
+    .select('*')
+    .order('time', { ascending: true })
+    .limit(5);
 
-      };
-      postScoreAndFetchLeaderboard();
-    }
+  if (fetchError) {
+    console.error('Error fetching leaderboard:', fetchError);
+    return;
+  }
+
+  setLeaderboard(data);
+  } catch (err) {
+  console.error('Unexpected error:', err);
+  }
+  };
+
+  useEffect(() => {
+  const allMatched = cards.every((card) => card.isMatched);
+  if (allMatched) {
+    setTimerActive(false);
+    postScoreAndFetchLeaderboard(); 
+  }
   }, [cards]);
   
 
