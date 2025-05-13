@@ -23,12 +23,19 @@ const MemoryGame = () => {
   const [cards, setCards] = useState(generateShuffledCards());
   const [flippedIndices, setFlippedIndices] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
-  const [userName, setUserName] = useState('Player 1');
+  const [userName, setUserName] = useState('');
   const [moves, setMoves] = useState(0);
   const [time, setTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [playerScore, setPlayerScore] = useState(null);
   const [leaderboard, setLeaderboard] = useState([]);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser && storedUser.name) {
+      setUserName(storedUser.name);
+    }
+  }, []);
 
   useEffect(() => {
     let timer;
@@ -107,6 +114,7 @@ const MemoryGame = () => {
   
       const postScoreAndFetchLeaderboard = async () => {
         // Insert the score into Supabase
+        try {
         const { error: insertError } = await supabase
           .from('scores')
           .insert([
@@ -138,9 +146,14 @@ const MemoryGame = () => {
           console.error('Error fetching leaderboard:', fetchError);
           return;
         }
-
+        
         setLeaderboard(data);
+      } catch (err) {
+        console.error('Unexpected error:', err);
+      }
+
       };
+      postScoreAndFetchLeaderboard();
     }
   }, [cards]);
   
@@ -172,9 +185,9 @@ const MemoryGame = () => {
       {matchedPairs === 8 && (
         <div className="win-overlay">
           <div className="win-message">
-            <p>🥳🎉 You Win! 🎉🏆</p>
+            <h2>🥳🎉 You Win! 🎉🏆</h2>
             <button className="play-again-btn" onClick={resetGame}>
-              🔁 Play Again
+              Play again!
             </button>
 
             {/* "Your Score" */}
