@@ -16,3 +16,19 @@
     color: #ffffff;
     background-color: #f18c20;
 }
+
+input, label, p, button, .alert{
+    font-size:13px !important;
+}
+.transparent-card {
+    background-color: rgba(255, 255, 255, 0); /* Fully transparent */
+    border: none; 
+    padding: 15px;
+}
+
+.title-container {
+    background-color: rgba(255, 255, 255, 0) !important;   
+    border: none; 
+    padding: 15px;
+    margin: 10px;
+}

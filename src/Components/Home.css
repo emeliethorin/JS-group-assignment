@@ -1,16 +1,18 @@
 
-.welcome-container {
+.start-section {
     width: 70%;
     display: inline-block;
     padding: 10px;
 }
 
-.card {
-    padding: 20px;
+.title-container {
+    padding: 10px;
+    background-color: white;
 }
 
-.card-body {
+.welcome-container {
     padding: 10px;
+    background-color: white;
 }
 
 .welcome-text {
