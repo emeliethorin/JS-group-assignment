@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Alert, Form, FloatingLabel } from "react-bootstrap";
-import "../styles/login.css";
+import "./Login.css";
 import PageTitle from "./PageTitle";
 
 function Register() {
