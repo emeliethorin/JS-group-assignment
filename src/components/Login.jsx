@@ -40,7 +40,7 @@ const Login = () => {
     <>
       <PageTitle />
       <div className="container">
-        <Card className="text-left shadow p-3 mb-5 rounded">
+        <Card className="transparent-card">
           <Card.Title>
             <h2 className="text-uppercase text-center m-3">Login</h2>
           </Card.Title>
