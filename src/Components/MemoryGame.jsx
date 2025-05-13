@@ -43,6 +43,8 @@ const MemoryGame = () => {
     setFlippedIndices([]);
     setMatchedPairs(0);
     setMoves(0);
+    setTime(0);
+    setTimerActive(false);
   };
 
   useEffect(() => {
@@ -82,6 +84,12 @@ const MemoryGame = () => {
     if (card.isFlipped || card.isMatched || flippedIndices.length === 2) {
       return;
     }
+
+    // Start the timer 
+    if (!timerActive && moves === 0 && flippedIndices.length === 0) {
+      setTimerActive(true);
+    }
+
     // Flip the card
     setCards(prevCards =>
       prevCards.map((c, idx) =>
