@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './MemoryGame.css'; 
 import ResetButton from './ResetButton';
 import Card from './Card';
-//import { supabase } from './supabaseClient';
+import { supabase } from '../supabaseClient';
 import GameStats from './Gamestats';
 import LogoutButton from './LogoutButton';
 
