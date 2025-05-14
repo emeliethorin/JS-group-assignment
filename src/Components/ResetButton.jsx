@@ -6,7 +6,7 @@ const ResetButton = ({ onReset }) => {
   return (
     <div className="reset-container">
       <button className="reset-btn" onClick={onReset}>
-        🔄 Try Again
+        Try again!
       </button>
     </div>
   );

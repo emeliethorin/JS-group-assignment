@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import PageTitle from "./PageTitle";
+import "./Home.css"
+
 const Home = () => {
   const navigate = useNavigate();
   const userName = JSON.parse(localStorage.getItem("user"));
@@ -14,32 +16,30 @@ const Home = () => {
   return (
     <>
     <PageTitle />
-    <div className="mask d-flex align-items-center h-100 ">
-      <div className="card opacity-75" style={{ borderRadius: "15px" }}>
-        <div className="card-body p-5">
-          <h2 className="text-center mb-5">
-            Welcome <span className="text-white bg-dark">{userName.name}</span>{" "}
-            to Memory Game
+      <div className="welcome-container" style={{ borderRadius: "15px" }}>
+        <div className="welcome-container">
+          <h2 className="welcome-text text-center">
+            Welcome <span className="welcome-text">{userName.name}</span>{" "}
+    
           </h2>
         </div>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-center">
         <button
             onClick={openGame}
             type="submit"
-            className="btn btn-info btn-block btn-lg text-black"
+            className="btn btn-start btn-block btn-lg"
           >
             Start Game
           </button>
           <button
             onClick={handleLogout}
             type="submit"
-            className="btn btn-success btn-block btn-sm text-white"
+            className="btn btn-logout btn-block btn-sm text-white"
           >
             Logout
           </button>
         </div>
       </div>
-    </div>
     </>
   );
 };

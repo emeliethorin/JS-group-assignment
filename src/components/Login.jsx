@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Alert, Form, FloatingLabel } from "react-bootstrap";
 import PageTitle from "./PageTitle";
+import './Login.css'; 
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Login = () => {
       input.password === loggeduser.password
     ) {
       localStorage.setItem("loggedin", true);
+      localStorage.setItem("user", JSON.stringify(loggeduser));
       setShowSuccess(true);
       setTimeout(() => {
         navigate("/");
@@ -39,13 +41,13 @@ const Login = () => {
     <>
       <PageTitle />
       <div className="container">
-        <Card className="text-left shadow p-3 mb-5 rounded">
+        <Card className="transparent-card">
           <Card.Title>
             <h2 className="text-uppercase text-center m-3">Login</h2>
           </Card.Title>
           <Card.Body>
             <Form onSubmit={handleLogin}>
-              <Form.Group>
+              <Form.Group className="login-form">
                 <FloatingLabel
                   controlId="floatingInputEmail"
                   label="Enter email"
@@ -76,7 +78,7 @@ const Login = () => {
                 </FloatingLabel>
               </Form.Group>
               <Form.Group>
-                <Button type="submit">Login</Button>
+                <Button type="submit" className="login-btn">Login</Button>
               </Form.Group>
               <Form.Group>
                 {showAlert && (

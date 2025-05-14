@@ -1,0 +1,49 @@
+
+.start-section {
+    width: 70%;
+    display: inline-block;
+    padding: 10px;
+}
+
+.title-container {
+    padding: 10px;
+    background-color: white;
+}
+
+.welcome-container {
+    padding: 10px;
+    background-color: white;
+}
+
+.welcome-text {
+    font-size: 32px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.btn {
+    margin: 10px;
+}
+
+.btn-start {
+    background-color: #1f8b25;
+    color: white;
+    transition: #14b41c 0.3s ease;
+}
+
+.btn-start:hover {
+    background-color: #14b41c;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-logout {
+    background-color: #991403;
+    color: white;
+}
+
+.btn-logout:hover {
+    background-color: #be220d;
+    cursor: pointer;
+    color: white;
+}
