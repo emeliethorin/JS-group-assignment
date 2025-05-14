@@ -207,7 +207,7 @@ const MemoryGame = () => {
                 <ul className="leaderboard">
                   {leaderboard.map((entry, index) => (
                     <li key={entry.id}>
-                      {index + 1}. {entry.name} — {entry.moves} moves, {entry.time}s
+                      {index + 1}. {entry.player_name} — {entry.moves} moves, {entry.time}s
               </li>
             ))}
           </ul>
