@@ -125,6 +125,7 @@
 
 .play-again-btn {
   margin-top: 20px;
+  margin-bottom: 10px;
   padding: 12px 24px;
   font-size: 1.2rem;
   background-color: #28a745;
@@ -141,6 +142,8 @@
 
 .your-score {
   margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 10px;
   background: #d6f5d6;
   border-radius: 10px;
@@ -149,11 +152,16 @@
 
 .leaderboard-container {
   margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   text-align: left;
   background: #ffffff10;
   padding: 10px;
   border-radius: 12px;
   backdrop-filter: blur(6px);
+  h3 {
+    font-size: 20px;
+  }
 }
 
 .leaderboard {
