@@ -115,7 +115,7 @@ const MemoryGame = () => {
       .from('scores')
       .insert([
       {
-        name: userName || 'Player 1', 
+        player_name: userName || 'Player 1', 
         moves,
         time
       }
