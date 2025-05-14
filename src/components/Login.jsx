@@ -28,6 +28,7 @@ const Login = () => {
       input.password === loggeduser.password
     ) {
       localStorage.setItem("loggedin", true);
+      localStorage.setItem("user", JSON.stringify(loggeduser));
       setShowSuccess(true);
       setTimeout(() => {
         navigate("/");
